@@ -11,20 +11,24 @@ from signal import signal
 
 
 # NOTE: Changing this number will alter package version as well.
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 
 def _handler(signum, stack):
-    _handler.callback()
-    execl(sys.executable, sys.executable, *sys.argv)
+    argv = _handler.callback()
+    if argv is None:
+        argv = sys.argv
+    execl(sys.executable, sys.executable, *argv)
 
 
 def install(signum, callback=lambda: None):
     """Install pyexec functionality for the given signal number.
 
-    Optionally one can specify callback function, which will be called before
-    process restart. In this function one can perform proper process shutdown
-    operations, e.g. handler closing, data save, etc.
+    Optionally, one can specify a callback function, which will be called
+    before the process is reloaded. In this function one can perform some
+    shutdown routines, e.g. saving data. This callback function also gives
+    a possibility to alter process command line arguments by returning the
+    list with new ones. Otherwise, the sys.argv will be used.
 
     Note:
         This function is not thread-safe. It should be called in the main
