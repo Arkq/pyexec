@@ -1,6 +1,17 @@
+# pyexec.py
+# Copyright (c) 2015-2017 Arkadiusz Bokowy
+#
+# This file is a part of pyexec.
+#
+# This project is licensed under the terms of the MIT license.
+
 import sys
 from os import execl
 from signal import signal
+
+
+# NOTE: Changing this number will alter package version as well.
+__version__ = '1.0.0'
 
 
 def _handler(signum, stack):
