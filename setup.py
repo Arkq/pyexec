@@ -10,7 +10,7 @@ from setuptools import setup
 import pyexec
 
 
-with open("README.md") as f:
+with open("README.rst") as f:
     long_description = f.read()
 
 setup(
@@ -19,7 +19,7 @@ setup(
     author="Arkadiusz Bokowy",
     author_email="arkadiusz.bokowy@gmail.com",
     url="https://github.com/Arkq/pyexec",
-    description="Signal-triggered process reloader.",
+    description="Signal-triggered process reloader",
     long_description=long_description,
     license="MIT",
     py_modules=["pyexec"],
